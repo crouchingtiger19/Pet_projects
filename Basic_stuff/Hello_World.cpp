@@ -1,12 +1,26 @@
+#include "construction_detector.h"
+
 #include <iostream>
 #include <string_view>
 
-void print(std::string_view str)
+void test_construction_detector()
 {
-    std::cout << str << std::endl;
+    // Default constructions
+    detector def {};
+    detector def2;
+
+    // Copy then move constructed
+    detector copy {def};
+    detector move {std::move(def2)};
+
+    // Copy then move assigned
+    copy = def;
+    move = std::move(def2);
+
+    //4 destruction messages
 }
 
 int main()
 {
-    print("Hello World 2");
+    test_construction_detector();
 }
